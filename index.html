@@ -1,98 +1,77 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Cassette Tape</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-  </head>
-  <body>
-    <div id="nav" onClick="revealList()">
-      <div class="bar1"></div>
-      <div class="bar2"></div>
-      <div class="bar3"></div>
-    </div>
-    <div id="playlist">
-      <h3>Playlist</h3>
-      <form>
-        <input type="text" placeholder="Paste YouTube Link #1">
-        <input type="text" placeholder="Paste YouTube Link #2">
-        <input type="text" placeholder="Paste YouTube Link #3">
-        <input type="text" placeholder="Paste YouTube Link #4">
-        <input type="text" placeholder="Paste YouTube Link #5">
-        <input id="submitBtn" type="button" value="Submit" onClick="submitLinks(); return false;">
-        <input id="clearBtn" type="button" value="Clear" onClick="form.reset(); clearLinks(); return false;">
-      </form>
-    </div>
-    <div id="cassette">
-      <h2 id="message">Hey, check the menu! I'll build a mix for ya.</h2>
-      <div id="cBody">
-        <div id="cStrip">
-          <hr>
-        </div>
-        <div id="cWheelsMask">
-          <div class="c-wheels">
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-          </div>
-          <div class="c-wheels">
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-            <div class="c-spokes"></div>
-          </div>
-        </div>
-        <h1>Felipe</h1>
-        <h1>SQ-C60</h1>
-        <div id="cSmile"></div>
-        <div class="c-holes"></div>
-        <div class="c-holes"></div>
-        <div class="c-bolts"></div>
-        <div class="c-bolts"></div>
-      </div>
-      <div id="cBottom"></div>
-      <div id="controls">
-        <div id="play" class="ctrl-btn"><img src="img/play.svg"></div>
-        <div id="pause" class="ctrl-btn"><img src="img/pause.svg"></div>
-        <div id="next" class="ctrl-btn"><img src="img/next.svg"></div>
-        <div id="repeat" onClick="setRepeat()" class="ctrl-btn"><img src="img/repeat.svg"></div>
-      </div>
-    </div>
-    <iframe id="currentVideo"></iframe>
-    <script>
-      var thisBody = document.getElementsByTagName('body');
-      var thisMessage = document.getElementById('message');
-      var theseControls = document.getElementById('controls');
-      
-      function revealList() {
-        nav.classList.toggle("morph");
-        thisBody[0].classList.toggle("push");
-        if (nav.classList.contains('morph')) {
-          thisMessage.classList.add("fade-out");
-          theseControls.classList.add("fade-out");
-          setTimeout(function() {
-            theseControls.style.display = 'none';
-          }, 500);
-        } else {
-          thisMessage.classList.remove("fade-out");
-          theseControls.style.display = '';
-          setTimeout(function() {
-            theseControls.classList.remove("fade-out");
-          }, 100);
-          clearPlaceholders(); // function in handle-links.js line 137
-        }
-      }
-    </script>
-    <script src="js/handle-links.js"></script>
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<title>Felipe, the Cassette Tape</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+	<body>
+		<div id="nav">
+			<div id="navLineTop" class="nav-line"></div>
+			<div id="navLineMiddle" class="nav-line"></div>
+			<div id="navLineBottom" class="nav-line"></div>
+		</div>
+		<div id="playlist">
+			<h3>Playlist</h3>
+			<div id="inputForm">
+				<input type="text" placeholder="Go-to karaoke song?">
+				<input type="text" placeholder="Rainy day soundtrack?">
+				<input type="text" placeholder="Favorite movie theme?">
+				<input type="text" placeholder="Gym earbuds staple?">
+				<input type="text" placeholder="Guilty-pleasure song?">
+				<input id="submitButton" type="button" value="Submit">
+				<input id="clearButton" type="button" value="Clear">
+			</div>
+		</div>
+		<div id="cassette" class="felipe">
+			<h2 id="cMessage" class="fade-with-playlist">"Hey, check the menu! I'll build a mix for ya."</h2>
+			<div id="cBody">
+				<div id="cStrip">
+					<hr>
+				</div>
+				<div id="cWheelsMask">
+					<div class="c-wheels">
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+					</div>
+					<div class="c-wheels">
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+						<div class="c-spokes"></div>
+					</div>
+				</div>
+				<h1>Felipe</h1>
+				<h1>SQ-C60</h1>
+				<div id="cSmile">
+					<span id="cSongTitle"></span>
+				</div>
+				<div class="c-holes"></div>
+				<div class="c-holes"></div>
+				<div class="c-bolts"></div>
+				<div class="c-bolts"></div>
+			</div>
+			<div id="cSides"></div>
+			<div id="cControls" class="fade-with-playlist">
+				<div id="play" class="ctrl-btn"><img src="img/play.svg"></div>
+				<div id="pause" class="ctrl-btn"><img src="img/pause.svg"></div>
+				<div id="skip" class="ctrl-btn"><img src="img/next.svg"></div>
+				<!-- <div id="repeat" class="ctrl-btn"><img src="img/repeat.svg"></div> -->
+			</div>
+		</div>
+		<script src="js/constants.js"></script>
+		<script src="js/playlist.js"></script>
+		<script src="js/cassette-player.js"></script>
+	</body>
 </html>
