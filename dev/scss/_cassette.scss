@@ -1,211 +1,3 @@
-/* Font Imports */
-@import url(https://fonts.googleapis.com/css?family=Roboto:700,900,500);
-
-/* Site-wide vars */
-:root {
-	--site-pg-color: #e9d460 ;
-	--site-nav-color: #425f62;
-	--c-strip-color: #006cb7;
-	--c-case-color: #333;
-	--c-stripes-color: #373737;
-	--c-body-color: #db634c;
-	--c-wheel-color: #92b2b5;
-}
-
-/* Animation Keyframes */
-@keyframes rotate {
-	from { transform: rotate(0deg); }
-	to { transform: rotate(360deg); }
-}
-
-@keyframes marquee {
-	from { transform: translate(-100%, -50%); }
-	to { transform: translate(100%, -50%); }
-}
-
-/* Native HTML Elements */
-html,
-body {
-	width: 100%;
-	height: 100%;
-}
-
-body {
-	font-family: "Roboto", sans-serif;
-	margin: 0;
-	background-color: var(--site-pg-color);
-	transition: transform 500ms;
-	overflow: hidden;
-	/* Safari fix */
-	position: relative;
-	top: 0;
-}
-
-body.push-left {
-	transform: translateX(-300px);
-}
-
-h1,
-h2,
-h3 {
-	font-weight: 900;
-}
-
-h1 {
-	font-size: 13px;
-	text-transform: uppercase;
-	color: var(--site-pg-color);
-	margin: 0;
-	position: absolute;
-	bottom: 41px;
-}
-
-h1:nth-of-type(1) {
-	left: 10px;
-}
-
-h1:nth-of-type(2) {
-	right: 10px;
-}
-
-h2 {
-	color: rgba(0, 0, 0, 0.22);
-	margin: 0;
-}
-
-h3 {
-	font-size: 30px;
-	text-transform: uppercase;
-	color: rgba(0, 0, 0, 0.4);
-	text-transform: uppercase;
-	margin: 0 0 35px;
-}
-
-hr {
-	height: 3px;
-	border: none;
-	background-color: var(--site-pg-color);
-	display: none;
-}
-
-input:focus {
-	outline: 3px solid rgba(0, 0, 0, 0.7);
-}
-
-input[type="text"] {
-	color: rgba(0, 0, 0, 0.4);
-	width: 100%;
-	background: none;
-	border: none;
-	border-bottom: 2px solid rgba(0, 0, 0, 0.4);
-	display: block;
-	margin-bottom: 15px;
-	padding-bottom: 5px;
-}
-
-input[type="text"],
-input[type="button"] {
-	font-size: 15px;
-	font-weight: 700;
-}
-
-input[type="button"] {
-	color: #53777a;
-	width: calc(50% - 10px);
-	height: 60px;
-	background: none;
-	background-clip: content-box;
-	background-color: rgba(0, 0, 0, 0.4);
-	border: 3px solid rgba(0, 0, 0, 0.4);
-	border-radius: 20px;
-	display: inline-block;
-	margin-top: 40px;
-	padding: 5px;
-	cursor: pointer;
-	transition: width 0.2s linear, height 0.2s linear, padding 0.2s linear;
-	/* Override Safari iOS styles for buttons */
-	-webkit-appearance: none;
-}
-
-input[type="button"]:hover {
-	padding: 0;
-}
-
-/* These pseudo styles look redundant but have to be separated out for prefixed browsers to apply */
-input::placeholder {
-	font-size: 15px;
-	font-weight: 700;
-	color: rgba(0, 0, 0, 0.22);
-}
-
-/* These pseudo styles look redundant but have to be separated out for prefixed browsers to apply */
-input::-webkit-input-placeholder {
-	font-size: 15px;
-	font-weight: 700;
-	color: rgba(0, 0, 0, 0.22);
-}
-
-/* These pseudo styles look redundant but have to be separated out for prefixed browsers to apply */
-input::-moz-placeholder {
-	font-size: 15px;
-	font-weight: 700;
-	color: rgba(0, 0, 0, 0.22);
-}
-
-/* These pseudo styles look redundant but have to be separated out for prefixed browsers to apply */
-input:-ms-input-placeholder {
-	font-size: 15px;
-	font-weight: 700;
-	color: rgba(0, 0, 0, 0.22);
-}
-
-#nav {
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	display: block;
-	cursor: pointer;
-}
-
-.nav-line {
-	width: 35px;
-	height: 5px;
-	background-color: var(--site-nav-color);
-	margin: 6px 0;
-	transition: 0.4s;
-}
-
-.open-playlist #navLineTop {
-	transform: rotate(45deg) translate(9px, 6px);
-}
-
-.open-playlist #navLineMiddle {
-	opacity: 0;
-}
-
-.open-playlist #navLineBottom {
-	transform: rotate(-45deg) translate(9px, -7px);
-}
-
-#playlist {
-	width: 250px;
-	height: 100%;
-	box-sizing: border-box;
-	padding: 28px 20px 0;
-	text-align: center;
-	position: absolute;
-	right: -250px;
-	background-color: var(--site-nav-color);
-}
-
-.fade-on-nav-open {
-	transition: opacity 500ms;
-}
-
-.fade-on-nav-open.fade-out {
-	opacity: 0;
-}
-
 #cMessage {
 	font-size: 16px;
 	text-align: center;
@@ -474,49 +266,17 @@ input:-ms-input-placeholder {
 	margin-right: 10px;
 }
 
-#repeat img {
+#skip img {
 	transform: rotateY(180deg);
 }
 
 @media (min-width: 600px) {
-	body.push-left {
-		transform: translateX(-300px);
-	}
-
-	h1 {
-		font-size: 22px;
-		bottom: 55px;
-	}
-
-	h1:nth-of-type(1) {
-		left: 15px;
-	}
-
-	h1:nth-of-type(2) {
-		right: 15px;
-	}
-
-	input:focus {
-		/* removes glow from selected input */
-		outline: none;
-	}
-
-	#nav {
-		top: 35px;
-		right: 35px;
-	}
-
 	#cMessage {
 		top: -52px;
 		font-size: 19px;
 		max-width: unset;
 		margin-left: unset;
 		margin-right: unset;
-	}
-
-	#playlist {
-		width: 300px;
-		right: -300px;
 	}
 
 	#cassette {
@@ -626,15 +386,6 @@ input:-ms-input-placeholder {
 }
 
 @media (min-width: 1400px) {
-	h1 {
-		font-size: 25px;
-		bottom: 70px;
-	}
-
-	hr {
-		display: block;
-	}
-
 	#cMessage {
 		top: -70px;
 		font-size: 24px;

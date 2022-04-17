@@ -1,0 +1,29 @@
+{
+	"name": "portfolio-youtube-cassette",
+	"version": "1.0.0",
+	"description": "Felipe, the Cassette Tape",
+	"scripts": {
+		"autoprefixer": "postcss -u autoprefixer --autoprefixer.browsers 'last 2 versions, &gt; 1%' -r dist/css/styles.css",
+		"build": "npm-run-all -p build:*",
+		"build:css": "npm-run-all -s build:scss autoprefixer",
+		"build:scss": "sass 'dev/scss/index.scss' 'dist/css/styles.css'",
+		"serve": "reload -b -p 3000",
+		"start": "npm-run-all -s build -p serve watch",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"watch": "npm-run-all -p watch:*",
+		"watch:css": "onchange 'dev/scss/*.scss' -- npm run build:css"
+	},
+	"author": "Max Giron",
+	"license": "ISC",
+	"devDependencies": {
+		"autoprefixer": "^10.4.4",
+		"install": "^0.13.0",
+		"npm": "^8.7.0",
+		"npm-run-all": "^4.1.5",
+		"onchange": "^7.1.0",
+		"postcss": "^8.4.12",
+		"postcss-cli": "^9.1.0",
+		"reload": "^3.2.0",
+		"sass": "^1.50.0"
+	}
+}

@@ -1,0 +1,10 @@
+/* Animation Keyframes */
+@keyframes rotate {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+	from { transform: translate(-100%, -50%); }
+	to { transform: translate(100%, -50%); }
+}

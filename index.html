@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html class="felipe">
 	<head>
 		<meta charset="utf-8">
 		<title>Felipe, the Cassette Tape</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="dist/css/styles.css">
 	</head>
 	<body>
 		<div id="nav">
@@ -24,7 +27,7 @@
 				<input id="clearButton" type="button" value="Clear">
 			</div>
 		</div>
-		<div id="cassette" class="felipe">
+		<div id="cassette">
 			<h2 id="cMessage" class="fade-with-playlist">"Hey, check the menu! I'll build a mix for ya."</h2>
 			<div id="cBody">
 				<div id="cStrip">
@@ -64,14 +67,14 @@
 			</div>
 			<div id="cSides"></div>
 			<div id="cControls" class="fade-with-playlist">
-				<div id="play" class="ctrl-btn"><img src="img/play.svg"></div>
-				<div id="pause" class="ctrl-btn"><img src="img/pause.svg"></div>
-				<div id="skip" class="ctrl-btn"><img src="img/next.svg"></div>
-				<!-- <div id="repeat" class="ctrl-btn"><img src="img/repeat.svg"></div> -->
+				<div id="play" class="ctrl-btn"><img src="dist/img/play.svg"></div>
+				<div id="pause" class="ctrl-btn"><img src="dist/img/pause.svg"></div>
+				<div id="skip" class="ctrl-btn"><img src="dist/img/next.svg"></div>
+				<!-- <div id="repeat" class="ctrl-btn"><img src="dist/img/repeat.svg"></div> -->
 			</div>
 		</div>
-		<script src="js/constants.js"></script>
-		<script src="js/playlist.js"></script>
-		<script src="js/cassette-player.js"></script>
+		<script src="dist/js/constants.js"></script>
+		<script src="dist/js/playlist.js"></script>
+		<script src="dist/js/cassette-player.js"></script>
 	</body>
 </html>
