@@ -1,0 +1,31 @@
+@mixin media-min($min) {
+	@media (min-width: $min) {
+		@content;
+	}
+}
+
+@keyframes rotate {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+	from { transform: translate(-100%, -50%); }
+	to { transform: translate(100%, -50%); }
+}
+
+
+// SASS cannot manipulate CSS vars, so I couldn't use built-in color functions to manipulate lightness, for example. I was able to use my own SASS function to return $swatch based on parameters; however, I would have to create multiple body blocks (such as body.felipe) and scope affected elements inside of it to output corresponding colors, resulting in repeated code.
+
+:root {
+	&.felipe {
+		--pageColor: #e9d460;
+		--navColor: #425f62;
+		--eyebrowColor: #006cb7;
+		--caseColor: #333;
+		--stripesColor: #373737;
+		--shadowcolor: #cab01c;
+		--labelColor: #db634c;
+		--reelColor: #92b2b5;
+	}
+}

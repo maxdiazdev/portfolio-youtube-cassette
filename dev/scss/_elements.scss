@@ -1,4 +1,7 @@
-/* Native HTML Elements */
+@use 'shared';
+
+// $swatch: themes.cassette('sarah');
+
 html,
 body {
 	width: 100%;
@@ -8,44 +11,58 @@ body {
 body {
 	font-family: "Roboto", sans-serif;
 	margin: 0;
-	background-color: var(--site-pg-color);
+	background-color: var(--pageColor);
 	transition: transform 500ms;
 	overflow: hidden;
+
 	/* Safari fix */
 	position: relative;
 	top: 0;
-}
 
-body.push-left {
-	transform: translateX(-300px);
+	&.push-left {
+		transform: translateX(-300px);
+		@include shared.media-min(600px) { transform: translateX(-300px); }
+	}
 }
 
 h1,
 h2,
 h3 {
 	font-weight: 900;
+	margin: 0;
 }
 
 h1 {
 	font-size: 13px;
 	text-transform: uppercase;
-	color: var(--site-pg-color);
-	margin: 0;
+	color: var(--pageColor);
 	position: absolute;
 	bottom: 41px;
-}
 
-h1:nth-of-type(1) {
-	left: 10px;
-}
+	@include shared.media-min(600px) {
+		font-size: 22px;
+		bottom: 55px;
+	}
 
-h1:nth-of-type(2) {
-	right: 10px;
+	@include shared.media-min(1400px) {
+		font-size: 25px;
+		bottom: 70px;
+	}
+
+	&:nth-of-type(1) {
+		left: 10px;
+		@include shared.media-min(600px) { left: 15px; }
+	}
+
+	&:nth-of-type(2) {
+		right: 10px;
+		@include shared.media-min(600px) { right: 15px; }
+	}
 }
 
 h2 {
+	font-size: 13px;
 	color: rgba(0, 0, 0, 0.22);
-	margin: 0;
 }
 
 h3 {
@@ -53,118 +70,72 @@ h3 {
 	text-transform: uppercase;
 	color: rgba(0, 0, 0, 0.4);
 	text-transform: uppercase;
-	margin: 0 0 35px;
+	margin-bottom: 35px;
 }
 
 hr {
 	height: 3px;
 	border: none;
-	background-color: var(--site-pg-color);
+	background-color: var(--pageColor);
 	display: none;
+	@include shared.media-min(1400px) { display: block; }
 }
 
-input:focus {
-	outline: 3px solid rgba(0, 0, 0, 0.7);
-}
+input {
+	&:focus {
+		outline: 3px solid rgba(0, 0, 0, 0.7);
 
-input[type="text"] {
-	color: rgba(0, 0, 0, 0.4);
-	width: 100%;
-	background: none;
-	border: none;
-	border-bottom: 2px solid rgba(0, 0, 0, 0.4);
-	display: block;
-	margin-bottom: 15px;
-	padding-bottom: 5px;
-}
-
-input[type="text"],
-input[type="button"] {
-	font-size: 15px;
-	font-weight: 700;
-}
-
-input[type="button"] {
-	color: #53777a;
-	width: calc(50% - 10px);
-	height: 60px;
-	background: none;
-	background-clip: content-box;
-	background-color: rgba(0, 0, 0, 0.4);
-	border: 3px solid rgba(0, 0, 0, 0.4);
-	border-radius: 20px;
-	display: inline-block;
-	margin-top: 40px;
-	padding: 5px;
-	cursor: pointer;
-	transition: width 0.2s linear, height 0.2s linear, padding 0.2s linear;
-	/* Override Safari iOS styles for buttons */
-	-webkit-appearance: none;
-}
-
-input[type="button"]:hover {
-	padding: 0;
-}
-
-/* These pseudo styles look redundant but have to be separated out for prefixed browsers to apply */
-input::placeholder {
-	font-size: 15px;
-	font-weight: 700;
-	color: rgba(0, 0, 0, 0.22);
-}
-
-/* These pseudo styles look redundant but have to be separated out for prefixed browsers to apply */
-input::-webkit-input-placeholder {
-	font-size: 15px;
-	font-weight: 700;
-	color: rgba(0, 0, 0, 0.22);
-}
-
-/* These pseudo styles look redundant but have to be separated out for prefixed browsers to apply */
-input::-moz-placeholder {
-	font-size: 15px;
-	font-weight: 700;
-	color: rgba(0, 0, 0, 0.22);
-}
-
-/* These pseudo styles look redundant but have to be separated out for prefixed browsers to apply */
-input:-ms-input-placeholder {
-	font-size: 15px;
-	font-weight: 700;
-	color: rgba(0, 0, 0, 0.22);
-}
-
-@media (min-width: 600px) {
-	body.push-left {
-		transform: translateX(-300px);
+		input:focus {
+			/* removes glow from selected input */
+			@include shared.media-min(600px) {
+				outline: none;
+			}
+		}
 	}
 
-	h1 {
-		font-size: 22px;
-		bottom: 55px;
+	&[type="text"],
+	&[type="button"] {
+		font-size: 15px;
+		font-weight: 700;
 	}
 
-	h1:nth-of-type(1) {
-		left: 15px;
-	}
-
-	h1:nth-of-type(2) {
-		right: 15px;
-	}
-
-	input:focus {
-		/* removes glow from selected input */
-		outline: none;
-	}
-}
-
-@media (min-width: 1400px) {
-	h1 {
-		font-size: 25px;
-		bottom: 70px;
-	}
-
-	hr {
+	&[type="text"] {
+		color: rgba(0, 0, 0, 0.4);
+		width: 100%;
+		background: none;
+		border: none;
+		border-bottom: 2px solid rgba(0, 0, 0, 0.4);
 		display: block;
+		margin-bottom: 15px;
+		padding-bottom: 5px;
+	}
+
+	&[type="button"] {
+		color: #53777a;
+		width: calc(50% - 10px);
+		height: 60px;
+		background: none;
+		background-clip: content-box;
+		background-color: rgba(0, 0, 0, 0.4);
+		border: 3px solid rgba(0, 0, 0, 0.4);
+		border-radius: 20px;
+		display: inline-block;
+		margin-top: 40px;
+		padding: 5px;
+		cursor: pointer;
+		transition: width 0.2s linear, height 0.2s linear, padding 0.2s linear;
+
+		/* Override Safari iOS styles for buttons */
+		-webkit-appearance: none;
+	}
+
+	&[type="button"]:hover {
+		padding: 0;
+	}
+
+	&::placeholder {
+		font-size: 15px;
+		font-weight: 700;
+		color: rgba(0, 0, 0, 0.22);
 	}
 }

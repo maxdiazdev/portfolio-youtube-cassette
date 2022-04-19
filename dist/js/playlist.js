@@ -101,7 +101,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 
 // My variables for custom YouTube link handling
-var felipeWheels = document.getElementsByClassName('c-wheels');
+var felipeReels = document.getElementsByClassName('c-reels');
 var currentVideo = document.getElementById('currentVideo');
 var newVideoSource;
 var songInputs = document.getElementsByTagName('input');
@@ -115,13 +115,13 @@ var countFinished;
 function toggleFelipe(action) {
 	var thisAction = action;
 	if (thisAction == "play") {
-		for (i = 0; i < felipeWheels.length; i++) {
-			felipeWheels[i].classList.add("animate");
+		for (i = 0; i < felipeReels.length; i++) {
+			felipeReels[i].classList.add("animate");
 		}
 	}
 	if (thisAction == "pause") {
-		for (i = 0; i < felipeWheels.length; i++) {
-			felipeWheels[i].classList.remove("animate");
+		for (i = 0; i < felipeReels.length; i++) {
+			felipeReels[i].classList.remove("animate");
 		}
 	}
 }

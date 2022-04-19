@@ -32,18 +32,18 @@ class Cassette {
 		});
 	}
 
-	animateWheels(state) {
-		const wheels = this.cassette.querySelectorAll('.c-wheels');
+	animateReels(state) {
+		const reels = this.cassette.querySelectorAll('.c-reels');
 
-		wheels.forEach(wheel => {
+		reels.forEach(reel => {
 			if (state === 'play') {
-				wheel.classList.add('animate');
-				wheel.classList.remove('pause-animations');
+				reel.classList.add('animate');
+				reel.classList.remove('pause-animations');
 			} else if (state === 'pause') {
-				wheel.classList.add('pause-animations');
+				reel.classList.add('pause-animations');
 			} else {
-				wheel.classList.remove('animate');
-				wheel.classList.remove('pause-animations');
+				reel.classList.remove('animate');
+				reel.classList.remove('pause-animations');
 			}
 		});
 	}
@@ -69,7 +69,7 @@ class Cassette {
 		this.playButton.addEventListener('click', () => {
 			if (songs.length > 0) {
 				this.cassette.dataset.cassetteState = 'playing';
-				this.animateWheels('play');
+				this.animateReels('play');
 				this.animateTitle('play');
 			}
 		});
@@ -80,7 +80,7 @@ class Cassette {
 		pauseButton.addEventListener('click', () => {
 			if (songs.length > 0) {
 				this.cassette.dataset.cassetteState = 'paused';
-				this.animateWheels('pause');
+				this.animateReels('pause');
 				this.animateTitle('pause');
 			}
 		});
@@ -91,7 +91,7 @@ class Cassette {
 		skipButton.addEventListener('click', () => {
 			if (songs.length > 0 && this.songIndex !== songs.length - 1) {
 				this.songIndex++;
-				this.animateWheels('play');
+				this.animateReels('play');
 				this.animateTitle('play');
 			}
 		});
@@ -99,7 +99,7 @@ class Cassette {
 
 	handleStop() {
 		this.cassette.dataset.cassetteState = '';
-		this.animateWheels('stop');
+		this.animateReels('stop');
 		this.animateTitle('stop');
 		this.songIndex = 0;
 	}
