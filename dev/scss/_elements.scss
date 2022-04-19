@@ -83,14 +83,7 @@ hr {
 
 input {
 	&:focus {
-		outline: 3px solid rgba(0, 0, 0, 0.7);
-
-		input:focus {
-			/* removes glow from selected input */
-			@include shared.media-min(600px) {
-				outline: none;
-			}
-		}
+		outline: none;
 	}
 
 	&[type="text"],
@@ -111,12 +104,12 @@ input {
 	}
 
 	&[type="button"] {
-		color: #53777a;
+		color: var(--navColor);
 		width: calc(50% - 10px);
 		height: 60px;
 		background: none;
 		background-clip: content-box;
-		background-color: rgba(0, 0, 0, 0.4);
+		background-color: rgba(0, 0, 0, 0.45);
 		border: 3px solid rgba(0, 0, 0, 0.4);
 		border-radius: 20px;
 		display: inline-block;
