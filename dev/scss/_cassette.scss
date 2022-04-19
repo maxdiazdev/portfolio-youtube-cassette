@@ -47,7 +47,7 @@
 	bottom: 0;
 	left: 0;
 	border-radius: 15px;
-	box-shadow: 0px 5px 5px var(--shadowColor);
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
 
 	@include shared.media-min(600px) {
 		width: 450px;
@@ -294,6 +294,10 @@
 			transform: rotate(-45deg);
 		}
 	}
+}
+
+.c-name {
+	display: none;
 }
 
 #cSmile {

@@ -18,14 +18,55 @@
 // SASS cannot manipulate CSS vars, so I couldn't use built-in color functions to manipulate lightness, for example. I was able to use my own SASS function to return $swatch based on parameters; however, I would have to create multiple body blocks (such as body.felipe) and scope affected elements inside of it to output corresponding colors, resulting in repeated code.
 
 :root {
+	// Shared between cassettes
+	--caseColor: #333;
+	--stripesColor: #373737;
+
 	&.felipe {
 		--pageColor: #e9d460;
 		--navColor: #425f62;
 		--eyebrowColor: #006cb7;
-		--caseColor: #333;
-		--stripesColor: #373737;
-		--shadowcolor: #cab01c;
 		--labelColor: #db634c;
 		--reelColor: #92b2b5;
+
+		.c-name:nth-child(1) {
+			display: inline;
+		}
+	}
+
+	&.porter {
+		--pageColor: #A3AB78;
+		--navColor: #506266;
+		--eyebrowColor: #BDE038;
+		--labelColor: #10454F;
+		--reelColor: #A3AB78;
+
+		.c-name:nth-child(2) {
+			display: inline;
+		}
+	}
+
+	&.alexis {
+		--pageColor: #F2D091;
+		--navColor: #747A8C;
+		--eyebrowColor: #DB6B75;
+		--labelColor: #747A8C;
+		--reelColor: #9DB3A0;
+
+		.c-name:nth-child(3) {
+			display: inline;
+		}
+	}
+
+	&.tesfaye {
+		--pageColor: #D7B0E1;
+		--navColor: #942E55;
+		--eyebrowColor: #942E55;
+		--labelColor: #3F3CA6;
+		--reelColor: #D7B0E1;
+
+		.c-name:nth-child(4) {
+			display: inline;
+		}
 	}
 }
