@@ -1,23 +1,24 @@
 class Cassette {
 	constructor() {
-		this.cassette = BODY.querySelector('#cassette');
-		this.message = this.cassette.querySelector('#cMessage');
-		this.playButton = this.cassette.querySelector('#play');
-		this.playlist = BODY.querySelector('#playlist');
-		this.songIndex = 0;
+		this.message = CASSETTE.querySelector('#cMessage');
+		this.playButton = CASSETTE.querySelector('#play');
+		this.lastSongIndex = null;
+		this.themeIndex = 0;
 
 		this.handleUIFade();
+		this.handleUITheme();
 		this.handlePlay();
 		this.handlePause();
 		this.handleSkip();
+		this.handleStop();
 
-		this.playlist.addEventListener('userSubmitted', () => { if (songs.length > 0) this.playButton.click()});
-		this.playlist.addEventListener('userCleared', () => this.handleStop());
+		PLAYLIST.addEventListener('userSubmitted', () => this.message.innerHTML = 'Press play when you’re ready!');
+		PLAYLIST.addEventListener('userCleared', () => this.handleStop());
+		VIDEO_WRAPPER.addEventListener('videoEnded', () => this.handleStop());
 	}
 
 	handleUIFade() {
 		const fadeEls = document.querySelectorAll('.fade-with-playlist');
-		const controls = this.cassette.querySelector('#cControls')
 
 		NAV.addEventListener('navOpened', () => {
 			fadeEls.forEach(el => {
@@ -32,8 +33,25 @@ class Cassette {
 		});
 	}
 
+	handleUITheme() {
+		const themes = ['felipe', 'porter', 'alexis', 'tesfaye'];
+		const themeHook = BODY.querySelector('#cChangeTheme');
+		let root = document.documentElement;
+		root.classList.add(themes[this.themeIndex]);
+
+		themeHook.addEventListener('click', (event) => {
+			root.classList = '';
+			root.classList.add(themes[this.themeIndex]);
+			this.themeIndex++;
+
+			if (this.themeIndex === themes.length) {
+				this.themeIndex = 0;
+			}
+		});
+	}
+
 	animateReels(state) {
-		const reels = this.cassette.querySelectorAll('.c-reels');
+		const reels = CASSETTE.querySelectorAll('.c-reels');
 
 		reels.forEach(reel => {
 			if (state === 'play') {
@@ -49,11 +67,11 @@ class Cassette {
 	}
 
 	animateTitle(state) {
-		const songTitle = this.cassette.querySelector('#cSongTitle');
+		const songTitle = CASSETTE.querySelector('#cSongTitle');
 
 		if (state === 'play') {
-			console.log(songs[this.songIndex]);
-			songTitle.innerHTML = songs[this.songIndex];
+			console.log(songs[songIndex]);
+			songTitle.innerHTML = youtubeTitle;
 			songTitle.classList.add('animate');
 			songTitle.classList.remove('pause-animations');
 		} else if (state === 'pause') {
@@ -68,7 +86,9 @@ class Cassette {
 	handlePlay() {
 		this.playButton.addEventListener('click', () => {
 			if (songs.length > 0) {
-				this.cassette.dataset.cassetteState = 'playing';
+				CASSETTE.dispatchEvent(new Event('cassettePlay'));
+				CASSETTE.dataset.cassetteState = 'playing';
+				this.updatePlayMessage();
 				this.animateReels('play');
 				this.animateTitle('play');
 			}
@@ -76,10 +96,11 @@ class Cassette {
 	}
 
 	handlePause() {
-		const pauseButton = this.cassette.querySelector('#pause');
+		const pauseButton = CASSETTE.querySelector('#pause');
 		pauseButton.addEventListener('click', () => {
 			if (songs.length > 0) {
-				this.cassette.dataset.cassetteState = 'paused';
+				CASSETTE.dispatchEvent(new Event('cassettePause'));
+				CASSETTE.dataset.cassetteState = 'paused';
 				this.animateReels('pause');
 				this.animateTitle('pause');
 			}
@@ -87,21 +108,45 @@ class Cassette {
 	}
 
 	handleSkip() {
-		const skipButton = this.cassette.querySelector('#skip');
+		const skipButton = CASSETTE.querySelector('#skip');
 		skipButton.addEventListener('click', () => {
-			if (songs.length > 0 && this.songIndex !== songs.length - 1) {
-				this.songIndex++;
-				this.animateReels('play');
-				this.animateTitle('play');
+			if (songs.length > 0 && songIndex !== songs.length - 1) {
+				songIndex++;
+				CASSETTE.dispatchEvent(new Event('cassetteSkip'));
+
+				// Gives YouTube API time to hook into new iframe
+				// TODO: This is fragile; change approach to creating all the iframes queued from the video instead
+				setTimeout(() => {
+					this.playButton.click();
+				}, 1000);
 			}
 		});
 	}
 
+	// TODO: Account for video stopping but there are still songs left in playlist
 	handleStop() {
-		this.cassette.dataset.cassetteState = '';
+		CASSETTE.dataset.cassetteState = '';
+		this.message.innerHTML = 'Hey, check the menu! I’ll build a mix for ya.';
 		this.animateReels('stop');
 		this.animateTitle('stop');
-		this.songIndex = 0;
+		this.lastSongIndex = null;
+		songIndex = 0;
+	}
+
+	updatePlayMessage() {
+		const playMessages = [
+			'Excellent choice!',
+			'Is this a throwback?',
+			'We have similar tastes ;)',
+			'I heard this at a wedding.',
+			'I’m not judging you :)'
+		];
+
+		if (this.lastSongIndex === null || this.lastSongIndex !== songIndex) {
+			let randomIndex = Math.floor(Math.random() * playMessages.length);
+			this.message.innerHTML = playMessages[randomIndex];
+			this.lastSongIndex = songIndex;
+		}
 	}
 }
 

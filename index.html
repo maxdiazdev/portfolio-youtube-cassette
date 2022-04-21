@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="felipe">
+<html>
 	<head>
 		<meta charset="utf-8">
 		<title>Felipe, the Cassette Tape</title>
@@ -10,6 +10,9 @@
 		<link rel="stylesheet" href="dist/css/styles.css">
 	</head>
 	<body>
+		<div id="videoWrapper">
+			<div id="youtubeIframe"></div>
+		</div>
 		<div id="nav">
 			<div id="navLineTop" class="nav-line"></div>
 			<div id="navLineMiddle" class="nav-line"></div>
@@ -72,14 +75,18 @@
 			</div>
 			<div id="cSides"></div>
 			<div id="cControls" class="fade-with-playlist">
-				<div id="play" class="ctrl-btn"><!--<img src="dist/img/play.svg">--></div>
-				<div id="pause" class="ctrl-btn"><!--<img src="dist/img/pause.svg">--></div>
-				<div id="skip" class="ctrl-btn"><!--<img src="dist/img/next.svg">--></div>
+				<div id="play" class="ctrl-btn"><img src="dist/img/play.svg"></div>
+				<div id="pause" class="ctrl-btn"><img src="dist/img/pause.svg"></div>
+				<div id="skip" class="ctrl-btn"><img src="dist/img/next.svg"></div>
 				<!-- <div id="repeat" class="ctrl-btn"><img src="dist/img/repeat.svg"></div> -->
 			</div>
 		</div>
+		<span id="cChangeTheme">+ Change Cassette</span>
+
+		<script src="https://www.youtube.com/iframe_api"></script>
 		<script src="dist/js/constants.js"></script>
 		<script src="dist/js/playlist.js"></script>
+		<script src="dist/js/youtube-video.js"></script>
 		<script src="dist/js/cassette-player.js"></script>
 	</body>
 </html>
